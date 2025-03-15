@@ -1,0 +1,3 @@
+This folder contains the JavaScript files for the EnhanceX website:
+
+1. script.js - The main JavaScript file for the website functionality 

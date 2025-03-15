@@ -1,0 +1,6 @@
+This folder contains the following images used in the EnhanceX website:
+
+1. hero-image.png - The main hero image showing video/image enhancement
+2. about-image.png - Image used in the about section
+
+Note: You'll need to replace these with actual images for your website. You can use stock photos or create custom graphics that illustrate video and image enhancement. 

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnhanceX - Video & Image Quality Enhancer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>Enhance<span>X</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Enhance Your Media Quality</h1>
+                <p>Transform low-quality videos and images into stunning high-resolution content with our AI-powered enhancement technology.</p>
+                <button class="btn primary-btn" id="get-started-btn">Get Started</button>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-image.png" alt="Media Enhancement">
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Enhancement</h3>
+                    <p>Upscale video resolution, reduce noise, and improve overall quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image Enhancement</h3>
+                    <p>Sharpen details, enhance colors, and increase resolution of your images.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Processing</h3>
+                    <p>Client-side processing for quick enhancement without uploading to servers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Privacy Focused</h3>
+                    <p>Your media never leaves your device, ensuring complete privacy.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhancer Tool Section -->
+        <section id="enhancer-tool" class="enhancer-tool">
+            <h2 class="section-title">Enhance Your Media</h2>
+            <div class="tool-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="video">Video Enhancer</button>
+                    <button class="tab-btn" data-tab="image">Image Enhancer</button>
+                </div>
+                
+                <div class="tab-content active" id="video-tab">
+                    <div class="upload-area" id="video-upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drag & Drop Your Video</h3>
+                        <p>or</p>
+                        <label for="video-upload" class="upload-btn">Browse Files</label>
+                        <input type="file" id="video-upload" accept="video/*" hidden>
+                        <p class="file-info">Supported formats: MP4, AVI, MOV, WebM (Max: 100MB)</p>
+                    </div>
+                    
+                    <div class="enhancer-controls" id="video-controls" style="display: none;">
+                        <div class="preview-container">
+                            <div class="original-preview">
+                                <h4>Original</h4>
+                                <video id="original-video" controls></video>
+                                <div class="video-info" id="original-video-info"></div>
+                            </div>
+                            <div class="enhanced-preview">
+                                <h4>Enhanced</h4>
+                                <video id="enhanced-video" controls></video>
+                                <div class="video-info" id="enhanced-video-info"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="enhancement-options">
+                            <h4>Enhancement Options</h4>
+                            <div class="option-group">
+                                <label for="video-resolution">Resolution:</label>
+                                <select id="video-resolution">
+                                    <option value="720p">HD (720p)</option>
+                                    <option value="1080p" selected>Full HD (1080p)</option>
+                                    <option value="1440p">2K (1440p)</option>
+                                    <option value="2160p">4K (2160p)</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label for="video-quality">Quality Enhancement:</label>
+                                <select id="video-quality">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label for="noise-reduction">Noise Reduction:</label>
+                                <input type="range" id="noise-reduction" min="0" max="100" value="50">
+                                <span id="noise-reduction-value">50%</span>
+                            </div>
+                            <div class="option-group">
+                                <label for="color-enhancement">Color Enhancement:</label>
+                                <input type="range" id="color-enhancement" min="0" max="100" value="50">
+                                <span id="color-enhancement-value">50%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="enhance-video-btn" class="btn primary-btn">Enhance Video</button>
+                            <button id="download-video-btn" class="btn secondary-btn" disabled>Download Enhanced Video</button>
+                            <button id="reset-video-btn" class="btn tertiary-btn">Reset</button>
+                        </div>
+                        
+                        <div class="processing-indicator" id="video-processing">
+                            <div class="spinner"></div>
+                            <p>Processing your video... <span id="video-progress">0%</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="image-tab">
+                    <div class="upload-area" id="image-upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drag & Drop Your Image</h3>
+                        <p>or</p>
+                        <label for="image-upload" class="upload-btn">Browse Files</label>
+                        <input type="file" id="image-upload" accept="image/*" hidden>
+                        <p class="file-info">Supported formats: JPG, PNG, WebP, BMP (Max: 20MB)</p>
+                    </div>
+                    
+                    <div class="enhancer-controls" id="image-controls" style="display: none;">
+                        <div class="preview-container">
+                            <div class="original-preview">
+                                <h4>Original</h4>
+                                <img id="original-image">
+                                <div class="image-info" id="original-image-info"></div>
+                            </div>
+                            <div class="enhanced-preview">
+                                <h4>Enhanced</h4>
+                                <img id="enhanced-image">
+                                <div class="image-info" id="enhanced-image-info"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="enhancement-options">
+                            <h4>Enhancement Options</h4>
+                            <div class="option-group">
+                                <label for="image-resolution">Resolution Scale:</label>
+                                <select id="image-resolution">
+                                    <option value="1.5">1.5x</option>
+                                    <option value="2" selected>2x</option>
+                                    <option value="3">3x</option>
+                                    <option value="4">4x</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label for="sharpness">Sharpness:</label>
+                                <input type="range" id="sharpness" min="0" max="100" value="50">
+                                <span id="sharpness-value">50%</span>
+                            </div>
+                            <div class="option-group">
+                                <label for="image-noise-reduction">Noise Reduction:</label>
+                                <input type="range" id="image-noise-reduction" min="0" max="100" value="50">
+                                <span id="image-noise-reduction-value">50%</span>
+                            </div>
+                            <div class="option-group">
+                                <label for="image-color-enhancement">Color Enhancement:</label>
+                                <input type="range" id="image-color-enhancement" min="0" max="100" value="50">
+                                <span id="image-color-enhancement-value">50%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="enhance-image-btn" class="btn primary-btn">Enhance Image</button>
+                            <button id="download-image-btn" class="btn secondary-btn" disabled>Download Enhanced Image</button>
+                            <button id="reset-image-btn" class="btn tertiary-btn">Reset</button>
+                        </div>
+                        
+                        <div class="processing-indicator" id="image-processing">
+                            <div class="spinner"></div>
+                            <p>Processing your image... <span id="image-progress">0%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload</h3>
+                    <p>Upload your video or image file directly from your device.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Customize</h3>
+                    <p>Adjust enhancement settings to your preference.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Enhance</h3>
+                    <p>Our algorithm processes your media to improve quality and resolution.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Download</h3>
+                    <p>Download your enhanced media directly to your device.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2 class="section-title">About EnhanceX</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>EnhanceX is a cutting-edge media enhancement platform that leverages advanced algorithms to improve the quality of your videos and images. Our technology works entirely in your browser, ensuring your files never leave your device.</p>
+                    <p>Unlike other enhancement services, we prioritize your privacy and provide a seamless experience without requiring any sign-ups or subscriptions.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-image.png" alt="About EnhanceX">
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Enhance<span>X</span></h2>
+                    <p>Elevate your media quality instantly</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@enhancex.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 EnhanceX. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
