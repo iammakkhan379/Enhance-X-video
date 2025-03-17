@@ -318,24 +318,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Download Enhanced Video
     downloadVideoBtn.addEventListener('click', function() {
-        // Create a temporary anchor element
-        const a = document.createElement('a');
-        a.href = enhancedVideo.src;
-        a.download = 'enhanced_video.mp4';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        // Check if running on mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // For mobile devices, open in new tab first
+            const videoWindow = window.open(enhancedVideo.src, '_blank');
+            
+            // Add download instructions for mobile
+            alert('Long press on the video and select "Download" or "Save" from your browser menu to save the video.');
+        } else {
+            // Desktop download handling
+            const a = document.createElement('a');
+            a.href = enhancedVideo.src;
+            a.download = 'enhanced_video.mp4';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     });
     
     // Download Enhanced Image
     downloadImageBtn.addEventListener('click', function() {
-        // Create a temporary anchor element
-        const a = document.createElement('a');
-        a.href = enhancedImage.src;
-        a.download = 'enhanced_image.png';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        // Check if running on mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // For mobile devices, open in new tab first
+            const imageWindow = window.open(enhancedImage.src, '_blank');
+            
+            // Add download instructions for mobile
+            alert('Long press on the image and select "Download" or "Save" from your browser menu to save the image.');
+        } else {
+            // Desktop download handling
+            const a = document.createElement('a');
+            a.href = enhancedImage.src;
+            a.download = 'enhanced_image.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     });
     
     // Reset Video
